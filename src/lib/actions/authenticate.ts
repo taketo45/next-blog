@@ -1,5 +1,5 @@
 'use server';
- 
+
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation'
@@ -16,7 +16,8 @@ export async function authenticate(
     redirect('/dashboard')
   } catch (error) {
     if (error instanceof AuthError) {
-      switch (error.type) {
+      console.error('認証エラー詳細:', Object.keys(error), error);
+      switch (error.name) {
         case 'CredentialsSignin':
           return 'メールアドレスまたはパスワードが正しくありません。';
         default:
