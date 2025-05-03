@@ -16,7 +16,7 @@ export async function authenticate(
     redirect('/dashboard')
   } catch (error) {
     if (error instanceof AuthError) {
-      console.error('認証エラー詳細:', Object.keys(error), error);
+      console.log('認証エラー詳細:', Object.keys(error), error);
       switch (error.name) {
         case 'CredentialsSignin':
           return 'メールアドレスまたはパスワードが正しくありません。';
