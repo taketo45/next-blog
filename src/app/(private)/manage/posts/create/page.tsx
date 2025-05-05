@@ -8,12 +8,19 @@ import "highlight.js/styles/github.css"; // コードハイライト用のスタ
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createPost } from "@/lib/actions/createPost"; // 投稿作成のアクションをインポート
+
 // import rehypeHighlight from "rehype-highlight"; // コードハイライトに必要
 
-export default function createPage() {
+export default function CreatePostPage() {
   const [content, setContent] = useState("");
   const [contentLength, setContentLength] = useState(0);
   const [preview, setPreview] = useState(false);
+  const [state, formAction, isPending] = useActionState(
+    createPost,
+    {success: false, errors: {}}
+  );
+
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -25,11 +32,13 @@ export default function createPage() {
       <h1 className="text-2xl font-bold mb-4">
         新規記事投稿(Markdown対応)
       </h1>
-      <form className="space-y-4" action="">
+      <form className="space-y-4" action={formAction}>
         <div className="">
           <Label htmlFor="title">タイトル</Label>
           <Input type="text" id="title" name="title" className="" placeholder="タイトルを入力してください"></Input>
-
+          {state.errors.title && (
+              <p className="text-red-500 text-sm mt-1">{state.errors.title.join(',')}</p>
+            )}
         </div>
         <div>
           <Label htmlFor="content">コンテンツ</Label>
@@ -41,7 +50,11 @@ export default function createPage() {
             minRows={8} value={content} 
             onChange={handleContentChange}>
           </TextareaAutosize>
+          {state.errors.content && (
+              <p className="text-red-500 text-sm mt-1">{state.errors.content.join(',')}</p>
+            )}
         </div>
+
         <div className="text-right text-sm text-gray-500 mt-1">
           文字数：{contentLength} 
         </div>
@@ -64,7 +77,7 @@ export default function createPage() {
           </div>
         )}
           <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-600 rounded px-4 py-2">
-            投稿する
+            {isPending ? "投稿中..." : "投稿する"}
           </Button>
         </form>
     </div>

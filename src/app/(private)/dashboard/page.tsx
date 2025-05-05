@@ -44,7 +44,7 @@ export default async function DashboardPage() {
                 {new Date(post.updatedAt).toLocaleString()}
               </td>
               <td className="border p-2 text-center">
-                <PostDropdownMenu postId={post.postId} />
+                <PostDropdownMenu postId={post.id} />
               </td>
             </tr>
             ))}
