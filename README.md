@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Prisma 手順
+
+### スキーマファイルの構文確認：
+```
+npx prisma validate
+```
+
+### フォーマットの確認：
+```
+npx prisma format
+```
+
+
+### 本番環境でのマイグレーション適用
+```
+npx prisma migrate deploy
+```
+### Prisma Studioの利用
+```
+npx prisma studio
+```
+### 現在のマイグレーション状態を確認
+npx prisma migrate status
