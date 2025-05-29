@@ -41,6 +41,13 @@ export default function CreatePostPage() {
             )}
         </div>
         <div>
+          <Label htmlFor="topImage">トップ画像</Label>
+          <Input type="file" id="topImage" name="topImage" accept="image/*" className="" />
+          {state.errors.topImage && (
+              <p className="text-red-500 text-sm mt-1">{state.errors.topImage.join(',')}</p>
+            )}
+        </div>
+        <div>
           <Label htmlFor="content">コンテンツ</Label>
           <TextareaAutosize
             id="content"
