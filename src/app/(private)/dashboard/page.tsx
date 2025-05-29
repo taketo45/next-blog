@@ -1,4 +1,4 @@
-import {getOwnPost} from '@/lib/ownPost'
+import {getOwnPosts} from '@/lib/ownPost'
 import {auth} from '@/auth'
 import { Button } from '@/components/ui/button';
 import PostDropdownMenu from '@/components/post/PostDropdownMenu'
@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   if(!session?.user?.id || !session?.user?.email) {
     throw new Error('User not found');
   }
-  const posts = await getOwnPost(session.user.id);
+  const posts = await getOwnPosts(session.user.id);
 
 
   return (

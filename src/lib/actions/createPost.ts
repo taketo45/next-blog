@@ -45,7 +45,7 @@ export async function createPost(
     data: {
       title,
       content,
-      topImage: imageUrl as string,
+      topImage: imageUrl,
       published: true,
       authorId: userId
     }
