@@ -67,8 +67,7 @@ export async function updatePost(
       title,
       content,
       topImage: imageUrl,
-      published,
-      updatedAt: new Date()
+      published
     }
   })
 
